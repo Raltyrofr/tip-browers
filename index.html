@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dopas Search</title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      /* Set your background image here */
+      background: url('.yourfile.png') center/cover no-repeat, #f5f6fa;
+    }
+    .search-top-bar {
+      position: absolute;
+      top: 1.5rem;
+      left: 0;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      z-index: 10;
+    }
+    .search-container {
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      border-radius: 2em;
+      padding: 0.5em 1.5em;
+      display: flex;
+      align-items: center;
+      max-width: 32em;
+      width: 100%;
+      gap: 0;
+    }
+    .search-input {
+      border: none;
+      outline: none;
+      font-size: 1.15em;
+      padding: 0.75em 1em 0.75em 0;
+      background: transparent;
+      width: 18em;
+      flex: 1 1 auto;
+    }
+    .search-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 0.5em;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .search-btn svg {
+      width: 28px;
+      height: 28px;
+      stroke: #fff;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.25));
+      transition: stroke 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="search-top-bar">
+    <form class="search-container" onsubmit="searchGoogle(event)">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search Google…"
+        id="searchQuery"
+        autocomplete="off"
+      />
+      <button type="submit" class="search-btn" aria-label="Search">
+        <!-- Paper Airplane SVG Icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 2L11 13"></path>
+          <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+        </svg>
+      </button>
+    </form>
+  </div>
+  <script>
+    function searchGoogle(e) {
+      e.preventDefault();
+      let query = document.getElementById('searchQuery').value.trim();
+      if(query) {
+        // Replace spaces with +
+        query = query.replace(/ +/g, '+');
+        const url = 'https://www.google.com/search?ie=UTF-8&oe=UTF-8&q=' + query + '&btnG=Search&safe=active&ssui=on';
+        window.open(url, '_blank');
+      }
+    }
+    // To change the background, replace 'YOUR_IMAGE_FILE.jpg' in the CSS with your file path or image URL.
+    // To change the paper airplane color, modify the .search-btn svg { stroke: ... } rule in the CSS.
+  </script>
+</body>
+</html>
